@@ -1,3 +1,4 @@
 /venv/
 /.idea
 /bagels/utils/__pycache__
+*.cpython-310.pyc
