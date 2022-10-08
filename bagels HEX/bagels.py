@@ -9,8 +9,8 @@ class BagelsGame:
     _active_game = False
 
     def __init__(self, number_of_letters: int, number_of_guesses: int):
-        self._number_of_letters = number_of_letters
-        self._number_of_guesses = number_of_guesses
+        self.set_number_of_letters(number_of_letters)
+        self.set_number_of_guesses(number_of_guesses)
 
     def greeting(self) -> str:
         return f"""Hey! I thought up a {self._number_of_letters}-letter word consists of hexadecimal digits
@@ -60,9 +60,9 @@ So, lets start the game!"""
 
             # filling up the clues array
             for i in range(self._number_of_letters):
-                if guess[i] == self._answer[i]:
+                if guess[i].upper() == self._answer[i]:
                     clues.append("Fermi")
-                elif guess[i] in self._answer:
+                elif guess[i].upper() in self._answer:
                     clues.append("Pico")
 
             # case of no clues (no correct letters in the guess)
@@ -98,9 +98,9 @@ So, lets start the game!"""
         return self._active_game
 
     def set_number_of_letters(self, number_of_letters: int) -> None:
-        if (number_of_letters <= 16 or number_of_letters >= 1) and not self._active_game:
+        if (16 >= number_of_letters >= 1) and not self._active_game:
             self._number_of_letters = number_of_letters
-        elif not (number_of_letters <= 16 or number_of_letters >= 1):
+        elif not (16 >= number_of_letters >= 1):
             raise ValueError('Wrong number of letters is given. '
                              'Following number should be more than 0 and less than 17.')
         elif self._active_game:
