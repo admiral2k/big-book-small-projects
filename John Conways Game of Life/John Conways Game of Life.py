@@ -2,9 +2,19 @@ from random import randint
 from time import sleep
 from os import system
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class GameOfLife:
-    ALIVE = '0'
+    ALIVE = '█'
     DEAD = ' '
 
     def __init__(self, width, length):
@@ -79,13 +89,13 @@ def main():
     while True:
         try:
             system("cls")
-            print(game)
+            print(f"{bcolors.OKGREEN}{game}{bcolors.ENDC}")
             print("Press ctrl + C to stop the game.")
             game.tick()
-            sleep(0.1)
+            sleep(0.05)
         except KeyboardInterrupt:
             system("cls")
-            print(game)
+            print(f"{bcolors.WARNING}{game}{bcolors.ENDC}")
             print("Created by Amir @admiral2k.")
             break
 
