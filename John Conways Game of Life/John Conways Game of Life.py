@@ -2,6 +2,8 @@ from random import randint
 from time import sleep
 from os import system
 
+
+# used to color the output
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -13,9 +15,11 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 class GameOfLife:
     ALIVE = '█'
     DEAD = ' '
+    _currentCells = None
 
     def __init__(self, width, length):
         if length > 0 and width > 0:
@@ -43,7 +47,7 @@ class GameOfLife:
                     self._currentCells[(x, y)] = self.DEAD
 
     def tick(self):
-        next_cells={}
+        next_cells = {}
         for x in range(self._width):
             for y in range(self._length):
                 right = (x - 1) % self._width
@@ -83,6 +87,7 @@ class GameOfLife:
                 else:
                     next_cells[(x, y)] = self.DEAD
         self._currentCells = next_cells
+
 
 def main():
     game = GameOfLife(140, 30)
